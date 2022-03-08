@@ -28,7 +28,6 @@ function App() {
               } 
             />
             <Route path='/completeRegistration' element={<ProtectedRoute token={localStorage.getItem('registerToken')}><CompleteRegistration/></ProtectedRoute>} />
-            //<Route path='/create-pin' element={<ProtectedRoute ><CreatePin /></ProtectedRoute>} />
             <Route path='/dashboard' element={<ProtectedRoute ><Dashboard /></ProtectedRoute>} />
             <Route path='/user/settings' element={<ProtectedRoute ><Settings /></ProtectedRoute>} />
             <Route path='/user/login' element={<Login />} />
