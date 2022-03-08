@@ -12,9 +12,10 @@ import Card from "reactjs-credit-card/card";
 import Button from '../UI/Button'
 import { Modal } from 'react-bootstrap'
 import { useCardForm } from 'reactjs-credit-card';
+import { addCard } from '../../actions/userActions';
 
 
-const AddCard = ({addCard, onClick}) => {
+const AddCard = ({show, onClick}) => {
     const getFormData = useCardForm()
     const store = useStore();
     const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const AddCard = ({addCard, onClick}) => {
         }
     }
     return (
-        <Modal show={addCard} centered>
+        <Modal show={show} centered>
                 <Modal.Header>
                     <Modal.Title id="contained-modal-title-vcenter f-600">
                         Add Card
