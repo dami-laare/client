@@ -47,7 +47,9 @@ const CompleteRegistration = () => {
 
         let currState = store.getState();
 
-        await dispatch(verifyOTP(otp, currState.token));
+        let token = localStorage.getItem('registerToken')
+
+        await dispatch(verifyOTP(otp, token));
         
         currState = store.getState();
 
