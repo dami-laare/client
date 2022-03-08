@@ -12,12 +12,7 @@ import Login from './components/userRegistration/Login';
 import ProtectedRoute from './components/misc/ProtectedRoute';
 
 function App() {
-  // const store = useStore()
-  // const [state, setState] = useState(store.getState());
-
-  // useEffect(() => {
-  //   setState(store.getState())
-  // }, [])
+  
   return (
     <BrowserRouter>
       <div className="App">
@@ -26,7 +21,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/register' 
               element={
-                <ProtectedRoute >
+                <ProtectedRoute token={localStorage.getItem('inviteAllowed')}>
                   <Register />
                 </ProtectedRoute>
                 
