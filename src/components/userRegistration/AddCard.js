@@ -9,13 +9,14 @@ import {
 import Card from "reactjs-credit-card/card";
 import Button from '../UI/Button'
 import { Modal } from 'react-bootstrap'
+import { useCardForm } from 'reactjs-credit-card';
 
 const AddCard = ({addCard, onClick}) => {
-    
+    const getFormData = useCardForm()
     const submitHandler = async (e) {
         e.preventDefault();
 
-        
+        const [data, isValid] = getFormData()
 
     }
     return (
