@@ -27,7 +27,7 @@ const AddCard = ({addCard, onClick}) => {
         if(isValid) {
             let currState = store.getState();
        
-            dispatch(addCard(data.number.value, data.validMonth.value, data.validYear.value, data.securityCode.value, state.token)
+            dispatch(addCard(data.number.value, data.validMonth.value, data.validYear.value, data.securityCode.value, currState.token)
             
             currState = store.getState();
 
