@@ -3,11 +3,11 @@ import { Navigate } from 'react-router-dom'
 import { useStore } from 'react-redux';
 
 
-const ProtectedRoute = ({ children}) => {
+const ProtectedRoute = ({token, children}) => {
     const [state, setState] = useState(useStore().getState())
   return (
       <Fragment>
-          {!state.token ? (
+          {!token ? (
             <Navigate to={'/'} />
           ): (
               children
