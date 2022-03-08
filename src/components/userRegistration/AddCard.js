@@ -1,6 +1,6 @@
 import React from 'react';
-import ({useDispatch, useStore}) from 'react-redux';
-import ({ useAlert }) from 'react-alert';
+import {useDispatch, useStore} from 'react-redux';
+import { useAlert } from 'react-alert';
 import {
     CardHolder,
     CardNumber,
