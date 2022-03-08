@@ -20,7 +20,7 @@ const AddCard = ({show, onClick}) => {
     const store = useStore();
     const dispatch = useDispatch();
 
-    const submitHandler = async (e) {
+    const submitHandler = async (e) => {
         e.preventDefault();
 
         const [data, isValid] = getFormData()
