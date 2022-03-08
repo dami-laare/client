@@ -73,7 +73,7 @@ const Dashboard = () => {
                 onClick={modalBtnClickHandler}
                 footer={false}
             />
-            <AddCard addCard={addCard} onClick={modalBtnClickHandler}/>
+            <AddCard show={addCard} onClick={modalBtnClickHandler}/>
         </div>
     </Fragment>
   )
