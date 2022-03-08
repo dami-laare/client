@@ -135,7 +135,7 @@ export const login = (phone, pin) => async function(dispatch){
             type: 'LOADING'
         })
 
-        const {data} = await axios.post(`https://test-getfungry.herokuapp.com//api/v1/user/login`,{
+        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/user/login`,{
             phone,
             pin,
         })
