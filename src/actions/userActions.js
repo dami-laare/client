@@ -36,7 +36,7 @@ export const registerUser = (phone, name, email) => async function(dispatch) {
             email
         })
 
-        localStorage.setItem('token', data.token)
+        localStorage.setItem('registerToken', data.token)
 
         dispatch({
             type: 'SUCCESS',
@@ -70,6 +70,9 @@ export const verifyOTP = (otp, token) => async function(dispatch) {
             payload: {...data, token}
         })
 
+        localStorage.removeItem('registerToken');
+        
+        localStorage.setItem('verifyOTPToken', data.token)
 
     }catch(err){
         console.log(err)
@@ -97,6 +100,8 @@ export const addPin = (pin, token) => async function(dispatch){
             payload: {...data, token,}
         })
 
+        localStorage.removeItem('verifyOTPToken');
+        localStorage.setItem('completeToken', data.token)
 
 
     }catch(err){
@@ -181,6 +186,8 @@ export const login = (phone, pin) => async function(dispatch){
             payload: {...data}
         })
 
+        localStorage.setItem('completeToken', data.token)
+
     }catch(err){
         console.log(err)
         dispatch({
@@ -205,6 +212,8 @@ export const logout = (token) => async function(dispatch){
             type: 'SUCCESS',
             payload: {...data, token: null}
         })
+
+        localStorage.removeItem('completeToken');
 
     }catch(err){
         console.log(err)
