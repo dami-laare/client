@@ -14,7 +14,7 @@ export const submitInviteCode = (inviteCode) => async function(dispatch) {
             payload: {...data, token:'Allowed'}
         })
 
-        localStorage.setItem('inviteAllowed', 'true')
+        localStorage.setItem('inviteAllowed', true)
 
     }catch(error) {
         dispatch({
@@ -35,6 +35,8 @@ export const registerUser = (phone, name, email) => async function(dispatch) {
             name,
             email
         })
+
+        localStorage.removeItem('inviteAllowed');
 
         localStorage.setItem('registerToken', data.token)
 
