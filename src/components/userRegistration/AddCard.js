@@ -11,7 +11,13 @@ import Button from '../UI/Button'
 import { Modal } from 'react-bootstrap'
 
 const AddCard = ({addCard, onClick}) => {
+    
+    const submitHandler = async (e) {
+        e.preventDefault();
 
+        
+
+    }
     return (
         <Modal show={addCard} centered>
                 <Modal.Header>
