@@ -14,6 +14,8 @@ export const submitInviteCode = (inviteCode) => async function(dispatch) {
             payload: {...data, token:'Allowed'}
         })
 
+        localStorage.setItem('inviteAllowed', 'true')
+
     }catch(error) {
         dispatch({
             type: 'FAIL',
@@ -33,6 +35,8 @@ export const registerUser = (phone, name, email) => async function(dispatch) {
             name,
             email
         })
+
+        localStorage.setItem('token', data.token)
 
         dispatch({
             type: 'SUCCESS',
@@ -66,6 +70,7 @@ export const verifyOTP = (otp, token) => async function(dispatch) {
             payload: {...data, token}
         })
 
+
     }catch(err){
         console.log(err)
         dispatch({
@@ -92,6 +97,8 @@ export const addPin = (pin, token) => async function(dispatch){
             payload: {...data, token,}
         })
 
+
+
     }catch(err){
         console.log(err)
         dispatch({
@@ -111,6 +118,35 @@ export const verifyBVN = (bvn, dob, token) => async function(dispatch){
         const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/bvn/verify`,{
             bvn,
             dob,
+            token
+        })
+
+        dispatch({
+            type: 'SUCCESS',
+            payload: {...data, token}
+        })
+
+    }catch(err){
+        console.log(err)
+        dispatch({
+            type: 'FAIL',
+            payload: {error: err.response.data.message, token}
+        })
+    }   
+}
+
+export const addCard = (cardNo, expMnth, expYr, cvv, token) => async function(dispatch){
+    try{
+
+        dispatch({
+            type: 'LOADING'
+        })
+
+        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/user/add-card`,{
+            cardNo,
+            expMnth,
+            expYr,
+            cvv,
             token
         })
 
