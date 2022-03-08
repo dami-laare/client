@@ -71,10 +71,8 @@ export const verifyOTP = (otp, token) => async function(dispatch) {
             type: 'SUCCESS',
             payload: {...data, token}
         })
-
-        localStorage.removeItem('registerToken');
         
-        localStorage.setItem('verifyOTPToken', data.token)
+        localStorage.setItem('registerToken', data.token)
 
     }catch(err){
         console.log(err)
