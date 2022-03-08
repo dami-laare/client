@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import ({useDispatch, useStore}) from 'react-redux';
-import ({ useAlert }) from 'react-alert'
+import ({ useAlert }) from 'react-alert';
 import {
     CardHolder,
     CardNumber,
@@ -9,8 +9,8 @@ import {
     ValidThruYear,
   } from "reactjs-credit-card/form";
 import Card from "reactjs-credit-card/card";
-import Button from '../UI/Button'
-import { Modal } from 'react-bootstrap'
+import Button from '../UI/Button';
+import { Modal } from 'react-bootstrap';
 import { useCardForm } from 'reactjs-credit-card';
 import { addCard } from '../../actions/userActions';
 
