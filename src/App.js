@@ -12,12 +12,15 @@ import Login from './components/userRegistration/Login';
 import ProtectedRoute from './components/misc/ProtectedRoute';
 
 function App() {
-  const [state, useState] = useState(useStore().getState())
+  const [state, useState] = useState(useStore().getState());
+  const [inviteAllowed, setInviteAllowed] = useState(localStorage.getItem('inviteAllowed'))
+const [registerToken, setRegisterToken] = useState(localStorage.getItem('registerToken))
+const [completeToken, setCompleteToken] = useState(localStorage.getItem('completeToken))
 
   useEffect(() => {
-    const inviteAllowed = localStorage.getItem('inviteAllowed')
-    const registerToken = localStorage.getItem('registerToken')
-    const completeToken = localStorage.getItem('completeToken')
+    setInviteAllowed(localStorage.getItem('inviteAllowed'))
+    setRegisterToken(localStorage.getItem('registerToken'))
+    setCompleteToken(localStorage.getItem('completeToken'))
   }, [useStore().getState())
   return (
     <BrowserRouter>
