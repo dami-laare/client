@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useStore} from 'react-redux';
 import { useAlert } from 'react-alert';
 import {
@@ -16,6 +16,7 @@ import { addCard } from '../../actions/userActions';
 
 
 const AddCard = ({show, onClick}) => {
+    const [cardShow, setCardShow] = useState(show)
     const getFormData = useCardForm()
     const store = useStore();
     const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const AddCard = ({show, onClick}) => {
 
             if(currState.error) {
                 return alert.error(currState.error);
+            setCardShow(false)
             }
 
         }
