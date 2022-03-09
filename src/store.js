@@ -12,7 +12,9 @@ const reducer = (state = initialState,  action) => {
                 verified: state.verified,
                 token: state.token,
                 'loading': true,
-                'success': null
+                'success': null,
+                details: state.details
+
             }
         case 'SUCCESS':
             return {
@@ -20,6 +22,7 @@ const reducer = (state = initialState,  action) => {
                 'success': action.payload.success,
                 'token': action.payload.token,
                 verified: action.payload.verified
+                details: action.payload.details
             }
 
         case 'FAIL':
@@ -28,7 +31,9 @@ const reducer = (state = initialState,  action) => {
                 'success': false,
                 'error': action.payload.error,
                 token: action.payload.token,
-                verified: state.verified
+                verified: state.verified,
+                details: state.details
+
             }
         default:
             return state
