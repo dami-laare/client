@@ -27,6 +27,7 @@ const CreatePin = ({style, show1}) => {
         setShow(false)
         
         navigate('/dashboard')
+
     }
 
     const submitHandler = async (e) => {
@@ -38,11 +39,13 @@ const CreatePin = ({style, show1}) => {
 
         state = store.getState();
 
-        setShow(true)
-
         if(state.error) {
             return alert.error(state.error)
           }
+
+        setShow(true)
+
+        localStorage.setItem('completeToken', data.token)
     }
   return (
     <Fragment >
