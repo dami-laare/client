@@ -30,15 +30,15 @@ const [completeToken, setCompleteToken] = useState(localStorage.getItem('complet
             <Route path='/' element={<Home />} />
             <Route path='/register' 
               element={
-                <ProtectedRoute token={localStorage.getItem('inviteAllowed')}>
+                <ProtectedRoute token={isAllowed}>
                   <Register />
                 </ProtectedRoute>
                 
               } 
             />
-            <Route path='/completeRegistration' element={<ProtectedRoute token={localStorage.getItem('registerToken')}><CompleteRegistration/></ProtectedRoute>} />
-            <Route path='/dashboard' element={<ProtectedRoute token={localStorage.getItem('completeToken')}><Dashboard /></ProtectedRoute>} />
-            <Route path='/user/settings' element={<ProtectedRoute token={localStorage.getItem('completeToken')}><Settings /></ProtectedRoute>} />
+            <Route path='/completeRegistration' element={<ProtectedRoute token={registerToken}><CompleteRegistration/></ProtectedRoute>} />
+            <Route path='/dashboard' element={<ProtectedRoute token={completeToken}><Dashboard /></ProtectedRoute>} />
+            <Route path='/user/settings' element={<ProtectedRoute token={completeToken}><Settings /></ProtectedRoute>} />
             <Route path='/user/login' element={<Login />} />
           </Routes>  
         </div>
