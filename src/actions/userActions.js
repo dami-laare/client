@@ -14,7 +14,7 @@ export const submitInviteCode = (inviteCode) => async function(dispatch) {
             payload: {...data, token:'Allowed'}
         })
 
-        localStorage.setItem('inviteAllowed', 'true')
+        
 
     }catch(error) {
         dispatch({
@@ -100,7 +100,7 @@ export const addPin = (pin, token) => async function(dispatch){
             payload: {...data, token,}
         })
 
-        localStorage.removeItem('verifyOTPToken');
+        
         localStorage.setItem('completeToken', data.token)
 
 
