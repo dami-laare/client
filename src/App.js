@@ -12,7 +12,13 @@ import Login from './components/userRegistration/Login';
 import ProtectedRoute from './components/misc/ProtectedRoute';
 
 function App() {
-  
+  const [state, useState] = useState(useStore().getState())
+
+  useEffect(() => {
+    const inviteAllowed = localStorage.getItem('inviteAllowed')
+    const registerToken = localStorage.getItem('registerToken')
+    const completeToken = localStorage.getItem('completeToken')
+  }, [useStore().getState())
   return (
     <BrowserRouter>
       <div className="App">
