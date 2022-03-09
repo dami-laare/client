@@ -14,7 +14,7 @@ export const submitInviteCode = (inviteCode) => async function(dispatch) {
             payload: {...data, token:'Allowed'}
         })
 
-        
+        localStorage.setItem('inviteAllowed', 'true')
 
     }catch(error) {
         dispatch({
