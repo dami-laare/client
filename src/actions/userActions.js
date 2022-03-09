@@ -36,9 +36,9 @@ export const registerUser = (phone, name, email) => async function(dispatch) {
             email
         })
 
-        localStorage.removeItem('inviteAllowed');
-
         localStorage.setItem('registerToken', data.token)
+
+        // localStorage.removeItem('inviteAllowed');
 
         dispatch({
             type: 'SUCCESS',
