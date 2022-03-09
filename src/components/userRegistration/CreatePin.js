@@ -27,13 +27,13 @@ const CreatePin = ({style, show1}) => {
         setShow(false)
         
         navigate('/dashboard')
+        await localStorage.removeItem('registerToken')
 
     }
 
     const submitHandler = async (e) => {
         e.preventDefault();
         let state = store.getState();
-        console.log(pin)
 
         await dispatch(addPin(pin, state.token))
 

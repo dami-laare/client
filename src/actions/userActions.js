@@ -102,7 +102,6 @@ export const addPin = (pin, token) => async function(dispatch){
         
         await localStorage.setItem('completeToken', data.token)
 
-        await localStorage.removeItem('registerToken')
 
 
     }catch(err){
