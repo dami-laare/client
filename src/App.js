@@ -14,8 +14,8 @@ import ProtectedRoute from './components/misc/ProtectedRoute';
 function App() {
   const [state, useState] = useState(useStore().getState());
   const [inviteAllowed, setInviteAllowed] = useState(localStorage.getItem('inviteAllowed'))
-const [registerToken, setRegisterToken] = useState(localStorage.getItem('registerToken))
-const [completeToken, setCompleteToken] = useState(localStorage.getItem('completeToken))
+const [registerToken, setRegisterToken] = useState(localStorage.getItem('registerToken'))
+const [completeToken, setCompleteToken] = useState(localStorage.getItem('completeToken'))
 
   useEffect(() => {
     setInviteAllowed(localStorage.getItem('inviteAllowed'))
