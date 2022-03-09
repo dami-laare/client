@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import Button from '../UI/Button'
 import Header from './Header'
 import BottomMenu from './BottomMenu'
@@ -8,11 +8,12 @@ import { useDispatch, useStore } from 'react-redux';
 import { logout } from '../../actions/userActions';
 
 const Settings = () => {
-
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const alert = useAlert();
     const store = useStore()
+    const [details, setDetails] = useState(store.getState().details)
     const logoutHandler = async () => {
         let currState = store.getState();
         await dispatch(logout(currState.token));
@@ -46,22 +47,22 @@ const Settings = () => {
             <form className={`row mx-auto justify-content-center px-5`}>
                 <div className={`col-12 mb-3 row align-items-center justify-content-between`}>
                     <div className='col-12'>
-                        <input id='name' className='form-control' name='name' placeholder='John Doe'/>
+                        <input id='name' className='form-control' name='name' placeholder={details.name}/>
                     </div>
                 </div>
                 <div className={`col-12 mb-3 row row align-items-center justify-content-between`}>
                     <div className='col-12'>
-                        <input id='email' className='form-control' type='email' name='email' placeholder='someone@example.com'/>
+                        <input id='email' className='form-control' type='email' name='email' placeholder={details.email}/>
                     </div>
                 </div>
                 <div className={`col-12 mb-4 mb-md-5 row align-items-center justify-content-between`}>
                     <div className='col-12'>
-                        <input id='phone' className='form-control' type='tel' name='phone' placeholder='080********' />
+                        <input id='phone' className='form-control' type='tel' name='phone' placeholder={details.phone} />
                     </div>
                 </div>
                 <div className={`col-12 mb-4 mb-md-5 row align-items-center justify-content-between`}>
                     <div className='col-12'>
-                        <input id='address' className='form-control' type='tel' name='address' placeholder='Address' />
+                        <input id='address' className='form-control' type='tel' name='address' placeholder={details.address} />
                     </div>
                 </div>
                 <div className={`col-10 text-center`}>
