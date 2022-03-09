@@ -21,7 +21,7 @@ const reducer = (state = initialState,  action) => {
                 'loading': false,
                 'success': action.payload.success,
                 'token': action.payload.token,
-                verified: action.payload.verified
+                verified: action.payload.verified,
                 details: action.payload.details
             }
 
