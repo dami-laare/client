@@ -35,8 +35,11 @@ const Login = () => {
       
       await localStorage.setItem('completeToken', currState.token)
       await localStorage.setItem('details', JSON.stringify(currState.details));
-
-      navigate(`/dashboard`);
+      
+      setTimeout(() => {
+          navigate(`/dashboard`)
+      }, 1000)
+      
       
       
 
