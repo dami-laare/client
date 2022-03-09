@@ -21,7 +21,7 @@ const [completeToken, setCompleteToken] = useState(localStorage.getItem('complet
     setInviteAllowed(localStorage.getItem('inviteAllowed'))
     setRegisterToken(localStorage.getItem('registerToken'))
     setCompleteToken(localStorage.getItem('completeToken'))
-  }, [useStore().getState()]
+  }, [useStore().getState()])
   return (
     <BrowserRouter>
       <div className="App">
