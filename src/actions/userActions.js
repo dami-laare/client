@@ -211,8 +211,7 @@ export const logout = (token) => async function(dispatch){
         })
 
         dispatch({
-            type: 'SUCCESS',
-            payload: {...data, token: null}
+            type: 'LOGOUT',
         })
 
         localStorage.removeItem('completeToken');
