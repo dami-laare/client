@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useStore } from 'react-redux';
+import { useStore, useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Dashboard from './components/UI/Dashboard';
@@ -13,6 +13,7 @@ import ProtectedRoute from './components/misc/ProtectedRoute';
 
 function App() {
 
+  const state = useSelector(state => state)
   const [inviteAllowed, setInviteAllowed] = useState(false)
 const [registerToken, setRegisterToken] = useState(false)
 const [completeToken, setCompleteToken] = useState(false)
@@ -21,7 +22,7 @@ const [completeToken, setCompleteToken] = useState(false)
     setInviteAllowed(localStorage.getItem('inviteAllowed'))
     setRegisterToken(localStorage.getItem('registerToken'))
     setCompleteToken(localStorage.getItem('completeToken'))
-  }, [useStore().getState()])
+  }, [state])
   return (
     <BrowserRouter>
       <div className="App">
