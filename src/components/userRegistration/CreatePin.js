@@ -27,7 +27,6 @@ const CreatePin = ({style, show1}) => {
         setShow(false)
         
         navigate('/dashboard')
-        await localStorage.removeItem('registerToken')
 
     }
 
