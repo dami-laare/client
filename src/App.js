@@ -28,8 +28,8 @@ function App() {
               } 
             />
             <Route path='/completeRegistration' element={<ProtectedRoute token={localStorage.getItem('registerToken')}><CompleteRegistration/></ProtectedRoute>} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/user/settings' element={<ProtectedRoute ><Settings /></ProtectedRoute>} />
+            <Route path='/dashboard' element={<ProtectedRoute token={localStorage.getItem('registerToken')}><Dashboard /></ProtectedRoute>} />
+            <Route path='/user/settings' element={<ProtectedRoute token={localStorage.getItem('registerToken')}><Settings /></ProtectedRoute>} />
             <Route path='/user/login' element={<Login />} />
           </Routes>  
         </div>
