@@ -16,7 +16,7 @@ function App() {
   const state = useSelector(state => state)
   const [inviteAllowed, setInviteAllowed] = useState(localStorage.getItem('inviteAllowed')? localStorage.getItem('inviteAllowed'): false)
 const [registerToken, setRegisterToken] = useState(localStorage.getItem('registerToken')? localStorage.getItem('registerToken'):false)
-const [completeToken, setCompleteToken] = useState(localStorage.getItem('completeToken)? localStorage.getItem('inviteAllowed'):false)
+const [completeToken, setCompleteToken] = useState(localStorage.getItem('completeToken')? localStorage.getItem('inviteAllowed'):false)
 
   useEffect(() => {
     setInviteAllowed(localStorage.getItem('inviteAllowed'))
