@@ -20,9 +20,13 @@ const Settings = () => {
 
         currState = store.getState();
 
+   
+
         if(currState.error){
             alert.error(currState.error)
         }
+
+        localStorage.removeItem('completeToken')
         navigate('/user/login');
 
     }   
