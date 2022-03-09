@@ -9,11 +9,28 @@ import {
     ValidThruYear,
   } from "reactjs-credit-card/form";
 import Card from "reactjs-credit-card/card";
+import ReactCodeInput from 'react-code-input'
 import Button from '../UI/Button';
 import { Modal } from 'react-bootstrap';
 import { useCardForm } from 'reactjs-credit-card';
 import { addCard } from '../../actions/userActions';
 
+
+const style = {
+    fontFamily: 'monospace',
+    margin:  '4px',
+    MozAppearance: 'textfield',
+    width: '2.5rem',
+    height: '3rem',
+    borderRadius: '10px',
+    fontSize: '1.2rem',
+    fontWeight: 600,
+    paddingLeft: 'calc(1.5rem - 10px)',
+    backgroundColor: 'white',
+    color: '#FF611D',
+    border: '1px solid #c7663ccb',
+
+  }
 
 const AddCard = ({show, onClick}) => {
     const [cardShow, setCardShow] = useState(show)
@@ -35,8 +52,8 @@ const AddCard = ({show, onClick}) => {
 
             if(currState.error) {
                 return alert.error(currState.error);
-            setCardShow(false)
             }
+            setCardShow(false)
 
         }
     }
@@ -55,16 +72,16 @@ const AddCard = ({show, onClick}) => {
                         <ValidThruMonth className='form-control mb-3'></ValidThruMonth>
                         <ValidThruYear className='form-control mb-3' />
                         <CardSecurityCode placeholder="CVV" className=" mb-3 form-control input-text semi" />
+                        <ReactCodeInput 
+                            type='password'
+                            fields={6}
+                            // onChange={pinChangeHandler}
+                            inputStyle={style}
+                            className='pin'
+                        />
                         <button className='btn'>Submit</button>
                     </form>
-                </Modal.Body>
-                {/* <Modal.Footer className='row'>
-                    <div className='col-5'>
-                        <Button btnText='Got It!' onClick={onClick}/>
-                    </div>
-                </Modal.Footer>
-             */}
-                
+                </Modal.Body>           
             </Modal>
     )
 }

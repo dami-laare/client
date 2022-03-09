@@ -32,7 +32,9 @@ const Login = () => {
       if(currState.error) {
         return alert.error(currState.error)
       }
-      
+      console.log(currState)
+      await localStorage.setItem('completeToken', currState.token)
+      await localStorage.setItem('details', JSON.stringify(currState.details));
 
       navigate(`/dashboard`);
       

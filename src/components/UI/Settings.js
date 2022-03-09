@@ -13,7 +13,7 @@ const Settings = () => {
     const navigate = useNavigate();
     const alert = useAlert();
     const store = useStore()
-    const [details, setDetails] = useState(store.getState().details)
+    const [details, setDetails] = useState(JSON.parse(localStorage.getItem('details')))
     const logoutHandler = async () => {
         let currState = store.getState();
         await dispatch(logout(currState.token));
@@ -27,7 +27,8 @@ const Settings = () => {
             alert.error(currState.error)
         }
 
-        localStorage.removeItem('completeToken')
+        await localStorage.removeItem('completeToken')
+        await localStorage.removeItem('details')
         navigate('/user/login');
 
     }   

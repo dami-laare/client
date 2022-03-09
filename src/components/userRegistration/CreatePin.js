@@ -45,7 +45,7 @@ const CreatePin = ({style, show1}) => {
 
         setShow(true)
 
-        localStorage.setItem('completeToken', data.token)
+        await localStorage.setItem('completeToken', state.token)
     }
   return (
     <Fragment >
