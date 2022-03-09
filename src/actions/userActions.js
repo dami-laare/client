@@ -213,6 +213,9 @@ export const logout = (token) => async function(dispatch){
         })
 
         localStorage.removeItem('completeToken');
+        localStorage.removeItem('inviteAllowed');
+        localStorage.removeItem('registerToken');
+        localStorage.removeItem('details');
 
     }catch(err){
         console.log(err)

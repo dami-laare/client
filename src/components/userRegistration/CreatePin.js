@@ -43,6 +43,8 @@ const CreatePin = ({style, show1}) => {
           }
 
         setShow(true)
+        await localStorage.setItem('details', JSON.stringify(state.details));
+
 
         await localStorage.setItem('completeToken', state.token)
     }
