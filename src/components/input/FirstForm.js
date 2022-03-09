@@ -24,6 +24,8 @@ const FirstForm = ({ placeholder, btnSize, type, btnText, id, name, classes, inp
 
       const currState = store.getState();
 
+      localStorage.setItem('inviteAllowed', 'true')
+
 
       if(currState.error) {
         return alert.error(currState.error)
