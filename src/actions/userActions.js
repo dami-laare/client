@@ -26,7 +26,7 @@ export const submitInviteCode = (inviteCode) => async function(dispatch) {
     }
 }
 
-export const registerUser = (phone, name, email) => async function(dispatch) {
+export const registerUser = (phone, name, email,address) => async function(dispatch) {
     try{
         dispatch({
             type: 'LOADING'
@@ -35,7 +35,8 @@ export const registerUser = (phone, name, email) => async function(dispatch) {
         const { data } = await axios.post(`http://localhost:4000/api/v1/user/register`, {
             phone,
             name,
-            email
+            email,
+            address
         })
 
         await localStorage.setItem('registerToken', data.token)
@@ -159,6 +160,12 @@ export const verifyBVN = (bvn, dob, token) => async function(dispatch){
             payload: {...data, token}
         })
 
+        const dashData = JSON.parse(localStorage.getItem('dashData'))
+
+        dashData.bvnAdded = true
+
+        localStorage.setItem('dashData', JSON.stringify(dashData))
+
     }catch(err){
         console.log(err)
         dispatch({
@@ -238,18 +245,11 @@ export const getLatestState = (token) => async function(dispatch){
             token
         })
 
-        dispatch({
-            type: 'SUCCESS',
-            payload: {...data}
-        })
+        localStorage.setItem('dashData', JSON.stringify(data.dashData))
 
 
     }catch(err){
         console.log(err)
-        dispatch({
-            type: 'FAIL',
-            payload: {error: err.response.data.message}
-        })
     }
 }
 

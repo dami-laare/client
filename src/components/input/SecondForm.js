@@ -13,6 +13,7 @@ const SecondForm = ({ btnSize, btnText, classes, inputSize, path} ) => {
   const [phone, setPhone ] = useState('')
   const [name, setName ] = useState('')
   const [email, setEmail ] = useState('')
+  const [address, setAddress] = useState('')
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const alert = useAlert();
@@ -34,10 +35,14 @@ const SecondForm = ({ btnSize, btnText, classes, inputSize, path} ) => {
     setEmail(e.target.value)
   }
 
+  const addressChangeHandler = (e) => {
+    setAddress(e.target.value)
+  }
+
   const submitHandler = async (e) => {
       e.preventDefault();
       
-      await dispatch(registerUser(phone, name, email));
+      await dispatch(registerUser(phone, name, email,address));
 
       const currState = store.getState();
 
@@ -70,6 +75,12 @@ const SecondForm = ({ btnSize, btnText, classes, inputSize, path} ) => {
             <label htmlFor='phone' className='form-label justify-self-left col-2'>Phone:</label>
             <div className='col-9'>
                 <input id='phone' className='form-control' type='tel' name='phone' placeholder='080********' onChange={codeChangeHandler}/>
+            </div>
+        </div>
+        <div className={`col-${inputSize ? inputSize : '8'} mb-4 mb-md-5 row align-items-center justify-content-between`}>
+            <label htmlFor='address' className='form-label justify-self-left col-2'>Address:</label>
+            <div className='col-9'>
+                <input id='address' className='form-control' type='tel' name='address' placeholder='Your address' onChange={addressChangeHandler}/>
             </div>
         </div>
         <div className={`col-${btnSize}`}>

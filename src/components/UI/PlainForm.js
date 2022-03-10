@@ -15,8 +15,8 @@ const PlainForm = ({ type, name, placeholder, btnSize, btnText, classes, onClick
 
 
     const dateChangeHandler = (e) => {
-        setDob(new Date(e.target.value))
-        console.log(dob.toLocaleDateString().replace(/\//g, '-'));
+        setDob(new Date(e.target.value).toLocaleDateString().replace(/\//g, '-'))
+        console.log(dob.split('-')[1])
     }
 
     const bvnChangeHandler = (e) => {
@@ -32,6 +32,9 @@ const PlainForm = ({ type, name, placeholder, btnSize, btnText, classes, onClick
 
         currState = store.getState();
         if(currState.error) {
+            console.log(currState.error)
+            close(true)
+            onClick()
             return alert.error(currState.error)
         }
 

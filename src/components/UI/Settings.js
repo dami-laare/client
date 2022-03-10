@@ -47,22 +47,22 @@ const Settings = () => {
             <form className={`row mx-auto justify-content-center px-5`}>
                 <div className={`col-12 mb-3 row align-items-center justify-content-between`}>
                     <div className='col-12'>
-                        <input id='name' className='form-control' name='name' placeholder={details.name}/>
+                        <input id='name' className='form-control' name='name' placeholder={details.name} disabled/>
                     </div>
                 </div>
                 <div className={`col-12 mb-3 row row align-items-center justify-content-between`}>
                     <div className='col-12'>
-                        <input id='email' className='form-control' type='email' name='email' placeholder={details.email}/>
+                        <input id='email' disabled className='form-control' type='email' name='email' placeholder={details.email}/>
                     </div>
                 </div>
                 <div className={`col-12 mb-4 mb-md-5 row align-items-center justify-content-between`}>
                     <div className='col-12'>
-                        <input id='phone' className='form-control' type='tel' name='phone' placeholder={details.phone} />
+                        <input id='phone' disabled className='form-control' type='tel' name='phone' placeholder={details.phone} />
                     </div>
                 </div>
                 <div className={`col-12 mb-4 mb-md-5 row align-items-center justify-content-between`}>
                     <div className='col-12'>
-                        <input id='address' className='form-control' type='tel' name='address' placeholder={details.address} />
+                        <input id='address' disabled className='form-control' type='tel' name='address' placeholder={details.address} />
                     </div>
                 </div>
                 <div className={`col-10 text-center`}>

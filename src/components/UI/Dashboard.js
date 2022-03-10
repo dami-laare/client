@@ -17,8 +17,9 @@ const Dashboard = () => {
     const store = useStore();
     const state = useSelector(state => state)
     const dispatch = useDispatch();
-    const [verified, setVerfied] = useState(JSON.parse(localStorage.getItem('dashData')).bvnAdded)
+    const [verified, setVerfied] = useState(JSON.parse(localStorage.getItem('dashData')).verified)
     const [bvnAdded, setBvnAdded] = useState(JSON.parse(localStorage.getItem('dashData')).bvnAdded)
+    const [availBal, setAvailable] = useState(JSON.parse(localStorage.getItem('dashData')).availBal)
     const [showReview, setShowReview] = useState(false)
     const [show, setShow] = useState(false)
     const [addedCard, setAddedCard] = useState(store.getState().addedCard)
@@ -27,15 +28,23 @@ const Dashboard = () => {
 
 
     // useEffect(() => {
-        
-    //     setVerfied(state.verified)
-    //     setBvnAdded(state.bvnAdded)
-    // }, [store, state])
+    //     const fetchData = async () => {
+
+    //         await dispatch(getLatestState());
+
+    //     }
+    //     fetchData();
+
+    //     setVerfied(JSON.parse(localStorage.getItem('dashData')).verified)
+    //     setBvnAdded(JSON.parse(localStorage.getItem('dashData')).bvnAdded)
+    //     setAvailable(JSON.parse(localStorage.getItem('dashData')).availBal)
+    // }, [state])
     
 
 
     const modalBtnClickHandler = () => {
         setShow(false)
+        setShowReview(false)
         setAddCard(false)
     }
 
@@ -45,14 +54,12 @@ const Dashboard = () => {
     }
 
     const getMealTicket = () => {
-        console.log(bvnAdded)
-        console.log(verified)
-        if(!bvnAdded){
+        if(!JSON.parse(localStorage.getItem('dashData')).bvnAdded){
             setShow(true)
         }else{
 
             if(!addedCard && !firstTicket && verified){
-                setAddCard(true);
+                setShowReview(true);
             }
         }
     }
@@ -62,7 +69,7 @@ const Dashboard = () => {
             setShow(true)
         }else{
             if(!addedCard && !firstTicket && verified){
-                setAddCard(true);
+                setShowReview(true);
             }
         }
     }
@@ -73,7 +80,7 @@ const Dashboard = () => {
   
         <div className='d-flex flex-column'style={{marginTop: '7rem', width: '100%'}}>
             <div style={{padding: '1rem'}}>
-                <CreditBalance />
+                <CreditBalance availBal={availBal} />
                 <MealTicket getMealTicket={getMealTicket} payback={payback}/>
                 <Transactions />
             </div>
@@ -88,7 +95,7 @@ const Dashboard = () => {
             />
             <DModal 
                 show={showReview} 
-                modalBody={'Your account is under review <br/>You will be contacted within in next 24hrs'}
+                modalBody={<p>Your account is under review.<br/>You will be contacted within in next 24hrs</p>}
                 headerText={'Under Review'}
                 onClick={modalBtnClickHandler}
                 footer={true}

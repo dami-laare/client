@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Credit = () => {
+const Credit = ({availBal}) => {
   return (
     <div className='row'>
-        <div className='col-12 credit-text mb-2'>Available Balance: &#8358;10000</div>
+        <div className='col-12 credit-text mb-2'>Available Balance: &#8358;{availBal}</div>
         <div className='col-12 row'>
             <div className='col-7 col-sm-9 credit-bar rounded-pill'>
                 <div className='credit-fill rounded-pill'></div>
