@@ -9,6 +9,7 @@ const ScanQr = () => {
         <Fragment>
             <div className='w-75 d-flex flex-column px-3'>
                 <QrReader
+                    constraints={{facingMode: 'environment'}}
                     onResult={(result, error) => {
                     if (!!result) {
                         setId(result.text);
