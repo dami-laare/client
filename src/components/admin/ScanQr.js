@@ -30,6 +30,7 @@ const ScanQr = () => {
 
             <div className='text-center my-auto w-75 d-flex flex-column px-3'>
                 <QrReader
+                    className='mb-4'
                     constraints={{facingMode: 'environment'}}
                     onResult={(result, error) => {
                     if (!!result) {
