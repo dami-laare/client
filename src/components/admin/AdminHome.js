@@ -39,7 +39,7 @@ const AdminHome = () => {
             <h1 className='mb-5'>Admin</h1>
 
             <button onClick={generateNewToken} className='mx-auto w-50 btn mb-3'>Generate Token</button>
-            <Link to='/admin' className=''>Verify user</Link>
+            <Link to='/b9fh3fb374gfhb3un2n08385fn9nfh/verify' className=''>Verify user</Link>
             {show && (
                 <p className='mt-3'>Token:<br />{invite}<button onClick={()=> navigator.clipboard.writeText(`${invite}`)} className='ms-3 btn' ><i class="fas fa-copy"></i></button></p>
             )}
