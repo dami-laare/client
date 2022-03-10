@@ -1,13 +1,34 @@
 import React, { useState, Fragment } from 'react'
 import { QrReader } from 'react-qr-reader';
-
+import { useAlert } from 'react-alert';
+import { useDispatch, useStore } from 'react-redux'
+import Header from '../UI/Header'
+import {verifyTicket} from '../../actions/adminActions'
 
 const ScanQr = () => {
 
-    const [id, setId] = useState();
+    const store = useStore();
+    const dispatch = useDispatch();
+    const alert = useAlert();
+    const [id, setId] = useState('jyhhnergnethnetn');
+    
+    const verify = async () => {
+        await dispatch(verifyTicket(id));
+
+        const state = store.getState()
+
+        if (state.error) {
+            return alert.error(state.error)
+        }
+
+        alert.info(state.message)
+    }
+
     return (
         <Fragment>
-            <div className='w-75 d-flex flex-column px-3'>
+            <Header image={true} imgSrc={`${process.env.PUBLIC_URL}/logo.png`}/>
+
+            <div className='text-center my-auto w-75 d-flex flex-column px-3'>
                 <QrReader
                     constraints={{facingMode: 'environment'}}
                     onResult={(result, error) => {
@@ -21,7 +42,13 @@ const ScanQr = () => {
                     }}
                     style={{ width: '100%' }}
                 />
-                <p>{id}</p>
+                {id && (
+                    <div>
+                        <p>Ticket:<br/>{id}</p>
+                        <button onClick={verify} className='btn'>Verify Ticket</button>
+                    </div>
+                )}
+                
             </div>
         </Fragment>
     )
