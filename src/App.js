@@ -12,6 +12,7 @@ import Login from './components/userRegistration/Login';
 import ProtectedRoute from './components/misc/ProtectedRoute';
 import AdminHome from './components/admin/AdminHome';
 import AdminVerify from './components/admin/AdminVerify';
+import ScanQr from './components/admin/ScanQr';
 
 function App() {
 
@@ -45,6 +46,7 @@ const [completeToken, setCompleteToken] = useState(localStorage.getItem('complet
             <Route path='/user/login' element={<Login />} />
             <Route path='/b9fh3fb374gfhb3un2n08385fn9nfh' element={<AdminHome/>} />
             <Route path='/b9fh3fb374gfhb3un2n08385fn9nfh/verify' element={<AdminVerify/>} />
+            <Route path='/b9fh3fb374gfhb3un2n08385fn9nfh/scan' element={<ScanQr/>} />
           </Routes>  
         </div>
       </div>
