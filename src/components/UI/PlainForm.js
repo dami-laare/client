@@ -25,15 +25,12 @@ const PlainForm = ({ type, name, placeholder, btnSize, btnText, classes, onClick
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        // setShow(false)
-        console.log(store.getState());
 
         let currState = store.getState();
 
-        await dispatch(verifyBVN(bvn, dob, currState.token))
+        await dispatch(verifyBVN(bvn, dob, localStorage.getItem('completeToken')))
 
         currState = store.getState();
-        console.log(currState)
         if(currState.error) {
             return alert.error(currState.error)
         }

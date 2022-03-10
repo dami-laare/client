@@ -5,7 +5,7 @@ import Header from '../UI/Header'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useStore } from 'react-redux';
 import { useAlert } from 'react-alert'
-import { verifyOTP } from '../../actions/userActions';
+import { verifyOTP, resendOTP } from '../../actions/userActions';
 import CreatePin from './CreatePin';
 
 const style = {
@@ -59,6 +59,10 @@ const CompleteRegistration = () => {
             return alert.error(currState.error)
           }
     }
+
+    const resendOtp = async () => {
+        await dispatch(resendOTP);
+    }
   return (
     <Fragment>
         <Header image={true} imgSrc='logo-white.png' classes={'nav-custom'}/>
@@ -74,6 +78,9 @@ const CompleteRegistration = () => {
                         inputStyle={style}
                         className='pin col-12'
                     />
+                </div>
+                <div>
+                    <button onClick={resendOtp} className='btn btn-resend rounded-pill mb-3'>Resend OTP</button>
                 </div>
                 <div className='col-6 mx-auto'>
 

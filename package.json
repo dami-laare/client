@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.0",
     "react": "^17.0.2",
+    "react-admin": "^3.19.10",
     "react-alert": "^7.0.3",
     "react-alert-template-basic": "^1.0.2",
     "react-alert-template-mui": "^1.0.7",

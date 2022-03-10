@@ -1,6 +1,6 @@
-import { useDispatch, useStore } from 'react-redux';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import React, { Fragment, useEffect, useState } from 'react'
-import { verifyBVN } from '../../actions/userActions';
+import { verifyBVN, getLatestState } from '../../actions/userActions';
 import BottomMenu from './BottomMenu'
 import CreditBalance from './CreditBalance'
 import Header from './Header'
@@ -15,17 +15,24 @@ import './Dashboard.css'
 const Dashboard = () => {
     
     const store = useStore();
-    const [verified, setVerfied] = useState(store.getState().verified)
-    const [addedCard, setAddedCard] = useState(false)
+    const state = useSelector(state => state)
+    const dispatch = useDispatch();
+    const [verified, setVerfied] = useState(JSON.parse(localStorage.getItem('dashData')).bvnAdded)
+    const [bvnAdded, setBvnAdded] = useState(JSON.parse(localStorage.getItem('dashData')).bvnAdded)
+    const [showReview, setShowReview] = useState(false)
+    const [show, setShow] = useState(false)
+    const [addedCard, setAddedCard] = useState(store.getState().addedCard)
     const [addCard, setAddCard] = useState(false)
-    const [firstTicket, setFirstTicket] = useState(false)
-    const state = store.getState()
-    useEffect(() => {
-        setVerfied(state.verified)
-    }, [store, state])
+    const [firstTicket, setFirstTicket] = useState(store.getState().tickets > 1)
+
+
+    // useEffect(() => {
+        
+    //     setVerfied(state.verified)
+    //     setBvnAdded(state.bvnAdded)
+    // }, [store, state])
     
 
-    const [show, setShow] = useState(false)
 
     const modalBtnClickHandler = () => {
         setShow(false)
@@ -34,23 +41,29 @@ const Dashboard = () => {
 
     const closeHandler = (a) => {
         setShow(!a)
+        setShowReview(a)
     }
 
     const getMealTicket = () => {
-        if(!verified){
+        console.log(bvnAdded)
+        console.log(verified)
+        if(!bvnAdded){
             setShow(true)
-        }
-        if(!addedCard && !firstTicket){
-            setAddCard(true);
+        }else{
+
+            if(!addedCard && !firstTicket && verified){
+                setAddCard(true);
+            }
         }
     }
 
     const payback = () => {
-        if(!verified){
+        if(!bvnAdded){
             setShow(true)
-        }
-        if(!addedCard && !firstTicket){
-            setAddCard(true);
+        }else{
+            if(!addedCard && !firstTicket && verified){
+                setAddCard(true);
+            }
         }
     }
 
@@ -72,6 +85,13 @@ const Dashboard = () => {
                 headerText={'Activate your account'}
                 onClick={modalBtnClickHandler}
                 footer={false}
+            />
+            <DModal 
+                show={showReview} 
+                modalBody={'Your account is under review <br/>You will be contacted within in next 24hrs'}
+                headerText={'Under Review'}
+                onClick={modalBtnClickHandler}
+                footer={true}
             />
             <AddCard show={addCard} onClick={modalBtnClickHandler}/>
         </div>

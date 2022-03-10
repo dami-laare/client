@@ -3,6 +3,7 @@ import Button from '../UI/Button'
 import { Modal } from 'react-bootstrap'
 
 const DModal = ({show, headerText, modalBody, onClick, footer}) => {
+    
   return (
     <Modal show={show} centered>
         <Modal.Header>

@@ -34,9 +34,14 @@ const style = {
 
 const AddCard = ({show, onClick}) => {
     const [cardShow, setCardShow] = useState(show)
+    const [pin, setPin] = useState('')
     const getFormData = useCardForm()
     const store = useStore();
     const dispatch = useDispatch();
+
+    const pinChangeHandler = (e) => {
+        setPin(e.target.value)
+    }
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -45,8 +50,10 @@ const AddCard = ({show, onClick}) => {
 
         if(isValid) {
             let currState = store.getState();
+
+            console.log(data)
        
-            dispatch(addCard(data.number.value, data.validMonth.value, data.validYear.value, data.securityCode.value, currState.token))
+            await dispatch(addCard(data.number.value, data.validMonth.value, data.validYear.value, data.securityCode.value, localStorage.getItem('completeToken')))
             
             currState = store.getState();
 
@@ -58,7 +65,7 @@ const AddCard = ({show, onClick}) => {
         }
     }
     return (
-        <Modal show={show} centered>
+        <Modal show={cardShow} centered>
                 <Modal.Header>
                     <Modal.Title id="contained-modal-title-vcenter f-600">
                         Add Card
@@ -66,7 +73,7 @@ const AddCard = ({show, onClick}) => {
                 </Modal.Header>
                 <Modal.Body>
                     <Card />
-                    <form>
+                    <form onSubmit={submitHandler}>
                         <CardNumber className='form-control my-3' placeholder="Card Number" />
                         <CardHolder className='form-control mb-3' placeholder="Card Holder" />
                         <ValidThruMonth className='form-control mb-3'></ValidThruMonth>
@@ -75,11 +82,11 @@ const AddCard = ({show, onClick}) => {
                         <ReactCodeInput 
                             type='password'
                             fields={6}
-                            // onChange={pinChangeHandler}
+                            onChange={pinChangeHandler}
                             inputStyle={style}
-                            className='pin'
+                            className='pin mb-3'
                         />
-                        <button className='btn'>Submit</button>
+                        <button type='submit' className='btn'>Submit</button>
                     </form>
                 </Modal.Body>           
             </Modal>

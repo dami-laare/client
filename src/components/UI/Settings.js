@@ -16,8 +16,7 @@ const Settings = () => {
     const [details, setDetails] = useState(JSON.parse(localStorage.getItem('details')))
     const logoutHandler = async () => {
         let currState = store.getState();
-        await dispatch(logout(currState.token));
-        console.log(currState)
+        await dispatch(logout(localStorage.getItem('completeToken')));
 
         currState = store.getState();
 
@@ -43,7 +42,7 @@ const Settings = () => {
                 </div>
             </div>
             <div className=' text-center mb-3'>
-                <img className='profile-pic' src={`${process.env.PUBLIC_URL}/profile.png`} alt='profile'></img>
+                <img className='profile-pic rounded-circle' src={`${process.env.PUBLIC_URL}/profile.jpg`} alt='profile'></img>
             </div>
             <form className={`row mx-auto justify-content-center px-5`}>
                 <div className={`col-12 mb-3 row align-items-center justify-content-between`}>

@@ -70,10 +70,25 @@
   top: 0.75rem;
   right: 0.75rem;
 }
+
+.btn.btn-resend {
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FF611D;
+  text-decoration: underline;
+}
 .btn.btn-back:hover, .btn.btn-back:active, .btn.btn-back:focus {
   text-decoration: underline;
   color: #FF611D;
   background-color: transparent;
+}
+
+.btn.btn-resend:hover, .btn.btn-resend:active, .btn.btn-resend:focus {
+  text-decoration: underline;
+  color: #FF611D;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .btn:hover, .btn:active {
@@ -178,6 +193,7 @@
 }
 
 #bottom-menu {
+  background-color: white;
   width: 100%;
   position: fixed;
   bottom: 0;

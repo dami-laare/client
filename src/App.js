@@ -10,13 +10,15 @@ import CompleteRegistration from './components/userRegistration/CompleteRegistra
 import Register from './components/userRegistration/Register';
 import Login from './components/userRegistration/Login';
 import ProtectedRoute from './components/misc/ProtectedRoute';
+import AdminHome from './components/admin/AdminHome';
+import AdminVerify from './components/admin/AdminVerify';
 
 function App() {
 
   const state = useSelector(state => state)
   const [inviteAllowed, setInviteAllowed] = useState(localStorage.getItem('inviteAllowed')? localStorage.getItem('inviteAllowed'): false)
 const [registerToken, setRegisterToken] = useState(localStorage.getItem('registerToken')? localStorage.getItem('registerToken'):false)
-const [completeToken, setCompleteToken] = useState(localStorage.getItem('completeToken')? localStorage.getItem('inviteAllowed'):false)
+const [completeToken, setCompleteToken] = useState(localStorage.getItem('completeToken')? localStorage.getItem('completeToken'):false)
 
   useEffect(() => {
     setInviteAllowed(localStorage.getItem('inviteAllowed'))
@@ -41,6 +43,8 @@ const [completeToken, setCompleteToken] = useState(localStorage.getItem('complet
             <Route path='/dashboard' element={<ProtectedRoute token={completeToken}><Dashboard /></ProtectedRoute>} />
             <Route path='/user/settings' element={<ProtectedRoute token={completeToken}><Settings /></ProtectedRoute>} />
             <Route path='/user/login' element={<Login />} />
+            <Route path='/b9fh3fb374gfhb3un2n08385fn9nfh' element={<AdminHome/>} />
+            <Route path='/b9fh3fb374gfhb3un2n08385fn9nfh/verify' element={<AdminVerify/>} />
           </Routes>  
         </div>
       </div>

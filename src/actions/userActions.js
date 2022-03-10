@@ -6,7 +6,7 @@ export const submitInviteCode = (inviteCode) => async function(dispatch) {
             type: 'LOADING'
         })
 
-        const { data } = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/invite/validate/${inviteCode}`)
+        const { data } = await axios.post(`http://localhost:4000/api/v1/invite/validate/${inviteCode}`)
 
 
         dispatch({
@@ -21,6 +21,8 @@ export const submitInviteCode = (inviteCode) => async function(dispatch) {
             type: 'FAIL',
             payload: error.response.data.message
         })
+
+        localStorage.clear()
     }
 }
 
@@ -30,7 +32,7 @@ export const registerUser = (phone, name, email) => async function(dispatch) {
             type: 'LOADING'
         })
 
-        const { data } = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/user/register`, {
+        const { data } = await axios.post(`http://localhost:4000/api/v1/user/register`, {
             phone,
             name,
             email
@@ -49,7 +51,32 @@ export const registerUser = (phone, name, email) => async function(dispatch) {
     }catch(error) {
         dispatch({
             type: 'FAIL',
-            payload: error.response.data.message
+            payload:{ error:error.response.data.message}
+        })
+    }
+}
+
+export const resendOTP = () => async function(dispatch) {
+    try{
+        dispatch({
+            type: 'LOADING'
+        })
+
+        const { data } = await axios.post(`http://localhost:4000/api/v1/resend`, {token: localStorage.getItem('registerToken')})
+
+
+
+        dispatch({
+            type: 'SUCCESS',
+            payload: {...data}
+        })
+
+
+
+    }catch(error) {
+        dispatch({
+            type: 'FAIL',
+            payload:{ error:error.response.data.message}
         })
     }
 }
@@ -61,7 +88,7 @@ export const verifyOTP = (otp, token) => async function(dispatch) {
             type: 'LOADING'
         })
 
-        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/otp/verify`,{
+        const {data} = await axios.post(`http://localhost:4000/api/v1/otp/verify`,{
             otp,
             token
         })
@@ -89,7 +116,7 @@ export const addPin = (pin, token) => async function(dispatch){
             type: 'LOADING'
         })
 
-        const {data} = await axios.put(`https://test-getfungry.herokuapp.com/api/v1/user/pin/new`,{
+        const {data} = await axios.put(`http://localhost:4000/api/v1/user/pin/new`,{
             pin,
             token
         })
@@ -101,6 +128,7 @@ export const addPin = (pin, token) => async function(dispatch){
 
         
         await localStorage.setItem('completeToken', data.token)
+        await localStorage.setItem('dashData', JSON.stringify(data.dashData))
 
 
 
@@ -120,7 +148,7 @@ export const verifyBVN = (bvn, dob, token) => async function(dispatch){
             type: 'LOADING'
         })
 
-        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/bvn/verify`,{
+        const {data} = await axios.post(`http://localhost:4000/api/v1/bvn/verify`,{
             bvn,
             dob,
             token
@@ -147,7 +175,7 @@ export const addCard = (cardNo, expMnth, expYr, cvv, token) => async function(di
             type: 'LOADING'
         })
 
-        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/user/add-card`,{
+        const {data} = await axios.post(`http://localhost:4000/api/v1/user/add-card`,{
             cardNo,
             expMnth,
             expYr,
@@ -176,7 +204,7 @@ export const login = (phone, pin) => async function(dispatch){
             type: 'LOADING'
         })
 
-        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/user/login`,{
+        const {data} = await axios.post(`http://localhost:4000/api/v1/user/login`,{
             phone,
             pin,
         })
@@ -187,6 +215,34 @@ export const login = (phone, pin) => async function(dispatch){
         })
 
         localStorage.setItem('completeToken', data.token)
+        localStorage.setItem('dashData', JSON.stringify(data.dashData))
+
+    }catch(err){
+        console.log(err)
+        dispatch({
+            type: 'FAIL',
+            payload: {error: err.response.data.message}
+        })
+        localStorage.clear()
+    }
+}
+
+export const getLatestState = (token) => async function(dispatch){
+    try{
+
+        dispatch({
+            type: 'LOADING'
+        })
+
+        const {data} = await axios.post(`http://localhost:4000/api/v1/user/latest`,{
+            token
+        })
+
+        dispatch({
+            type: 'SUCCESS',
+            payload: {...data}
+        })
+
 
     }catch(err){
         console.log(err)
@@ -204,18 +260,15 @@ export const logout = (token) => async function(dispatch){
             type: 'LOADING'
         })
 
-        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/user/logout`,{
+        const {data} = await axios.post(`http://localhost:4000/api/v1/user/logout`,{
             token
         })
 
         dispatch({
             type: 'LOGOUT',
         })
+        localStorage.clear()
 
-        localStorage.removeItem('completeToken');
-        localStorage.removeItem('inviteAllowed');
-        localStorage.removeItem('registerToken');
-        localStorage.removeItem('details');
 
     }catch(err){
         console.log(err)
@@ -223,5 +276,6 @@ export const logout = (token) => async function(dispatch){
             type: 'FAIL',
             payload: {error: err.response.data.message}
         })
+        localStorage.clear()
     }
 }
