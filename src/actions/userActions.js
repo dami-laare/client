@@ -6,7 +6,7 @@ export const submitInviteCode = (inviteCode) => async function(dispatch) {
             type: 'LOADING'
         })
 
-        const { data } = await axios.post(`http://localhost:4000/api/v1/invite/validate/${inviteCode}`)
+        const { data } = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/invite/validate/${inviteCode}`)
 
 
         dispatch({
@@ -32,7 +32,7 @@ export const registerUser = (phone, name, email,address) => async function(dispa
             type: 'LOADING'
         })
 
-        const { data } = await axios.post(`http://localhost:4000/api/v1/user/register`, {
+        const { data } = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/user/register`, {
             phone,
             name,
             email,
@@ -63,7 +63,7 @@ export const resendOTP = () => async function(dispatch) {
             type: 'LOADING'
         })
 
-        const { data } = await axios.post(`http://localhost:4000/api/v1/resend`, {token: localStorage.getItem('registerToken')})
+        const { data } = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/resend`, {token: localStorage.getItem('registerToken')})
 
 
 
@@ -89,7 +89,7 @@ export const verifyOTP = (otp, token) => async function(dispatch) {
             type: 'LOADING'
         })
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/otp/verify`,{
+        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/otp/verify`,{
             otp,
             token
         })
@@ -117,7 +117,7 @@ export const addPin = (pin, token) => async function(dispatch){
             type: 'LOADING'
         })
 
-        const {data} = await axios.put(`http://localhost:4000/api/v1/user/pin/new`,{
+        const {data} = await axios.put(`https://test-getfungry.herokuapp.com/api/v1/user/pin/new`,{
             pin,
             token
         })
@@ -149,7 +149,7 @@ export const verifyBVN = (bvn, dob, token) => async function(dispatch){
             type: 'LOADING'
         })
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/bvn/verify`,{
+        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/bvn/verify`,{
             bvn,
             dob,
             token
@@ -182,7 +182,7 @@ export const addCard = (cardNo, expMnth, expYr, cvv, token) => async function(di
             type: 'LOADING'
         })
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/user/add-card`,{
+        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/user/add-card`,{
             cardNo,
             expMnth,
             expYr,
@@ -211,7 +211,7 @@ export const login = (phone, pin) => async function(dispatch){
             type: 'LOADING'
         })
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/user/login`,{
+        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/user/login`,{
             phone,
             pin,
         })
@@ -241,7 +241,7 @@ export const getLatestState = (token) => async function(dispatch){
             type: 'LOADING'
         })
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/user/latest`,{
+        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/user/latest`,{
             token
         })
 
@@ -260,7 +260,7 @@ export const logout = (token) => async function(dispatch){
             type: 'LOADING'
         })
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/user/logout`,{
+        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/user/logout`,{
             token
         })
 

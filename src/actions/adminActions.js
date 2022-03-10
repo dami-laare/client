@@ -7,7 +7,7 @@ export const generateToken = () => async (dispatch) => {
             type: 'LOADING'
         })
 
-        const { data } = await axios.get(`http://localhost:4000/api/v1/admin/generate`)
+        const { data } = await axios.get(`https://test-getfungry.herokuapp.com/api/v1/admin/generate`)
 
 
         dispatch({
@@ -35,7 +35,7 @@ export const verifyUser = (id) => async (dispatch) => {
             type: 'LOADING'
         })
 
-        const { data } = await axios.post(`http://localhost:4000/api/v1/admin/verify`, {
+        const { data } = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/admin/verify`, {
             id
         })
 
