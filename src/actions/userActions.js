@@ -175,7 +175,7 @@ export const verifyBVN = (bvn, dob, token) => async function(dispatch){
     }   
 }
 
-export const addCard = (cardNo, expMnth, expYr, cvv, token) => async function(dispatch){
+export const addCard = (cardNo, expMnth, expYr, cvv, pin, token) => async function(dispatch){
     try{
 
         dispatch({
@@ -187,12 +187,37 @@ export const addCard = (cardNo, expMnth, expYr, cvv, token) => async function(di
             expMnth,
             expYr,
             cvv,
+            pin,
             token
         })
 
         dispatch({
-            type: 'SUCCESS',
+            type: 'ADD_CARD_SUCCESS',
             payload: {...data, token}
+        })
+
+    }catch(err){
+        dispatch({
+            type: 'FAIL',
+            payload: {error: err.response.data.message, token}
+        })
+    }   
+}
+
+export const getTransactionStatus = (token) => async function(dispatch){
+    try{
+
+        dispatch({
+            type: 'LOADING'
+        })
+
+        const {data} = await axios.post(`http://localhost:4000/api/v1/transaction/status`,{
+            token
+        })
+
+        dispatch({
+            type: 'TRANSACTION_STATUS_SUCCESS',
+            payload: {...data}
         })
 
     }catch(err){
@@ -245,7 +270,11 @@ export const getLatestState = (token) => async function(dispatch){
             token
         })
 
-        localStorage.setItem('dashData', JSON.stringify(data.dashData))
+        dispatch({
+            type: 'LATEST',
+            payload: {...data}
+        })
+
 
 
     }catch(err){

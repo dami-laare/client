@@ -182,7 +182,6 @@
 }
 
 .transactions {
-  height: 100%;
   margin-top: 1rem;
 }
 
@@ -235,4 +234,18 @@
 .profile-pic{
   height: 158px;
   width: 158px;
+}
+
+.owner {
+  display: none !important;
+}
+
+.card {
+  height: 10rem;
+  min-height: 10rem;
+
+}
+
+.card-front-face {
+  margin-top: 3em;
 }

@@ -58,7 +58,7 @@ const Login = () => {
             <div className={`col-12 mb-4 mb-md-5 row align-items-center justify-content-between`}>
                 <label htmlFor='phone' className='form-label justify-self-left col-2'>Phone:</label>
                 <div className='col-9'>
-                    <input autoComplete='off' id='phone' className='form-control' type='tel' name='phone' placeholder='080********' onChange={phoneChangeHandler}/>
+                    <input autoComplete='off' id='phone' className='form-control' type='number' name='phone' placeholder='080********' onChange={phoneChangeHandler}/>
                 </div>
             </div>
             <div className={`col-12 mb-3 row row align-items-center justify-content-between`}>

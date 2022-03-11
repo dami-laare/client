@@ -32,12 +32,13 @@ const PlainForm = ({ type, name, placeholder, btnSize, btnText, classes, onClick
 
         currState = store.getState();
         if(currState.error) {
-            console.log(currState.error)
             close(true)
             onClick()
             return alert.error(currState.error)
         }
-
+        let dashData = JSON.parse(localStorage.getItem('dashData'));
+        dashData.bvnAdded = true
+        localStorage.setItem('dashData', JSON.stringify(dashData))
         close(true)
     }
   return (

@@ -11,6 +11,7 @@ const ScanQr = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
     const [id, setId] = useState('jyhhnergnethnetn');
+    const [value, setValue] = useState('')
     
     const verify = async () => {
         await dispatch(verifyTicket(id));
@@ -20,6 +21,8 @@ const ScanQr = () => {
         if (state.error) {
             return alert.error(state.error)
         }
+
+        setValue(state.value)
 
         alert.info(state.message)
     }
@@ -46,6 +49,7 @@ const ScanQr = () => {
                 {id && (
                     <div>
                         <p>Ticket:<br/>{id}</p>
+                        <p>Value:<br/>{value}</p>
                         <button onClick={verify} className='btn'>Verify Ticket</button>
                     </div>
                 )}

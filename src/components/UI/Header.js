@@ -11,7 +11,7 @@ const Header = ({classes, imgSrc, style, heading, image}) => {
         )}
         
         {heading && (
-          <h1 className='col-12 text-center heading mt-3'>{heading}</h1>
+          <h1 className='text-dark col-12 text-center heading mt-3'>{heading}</h1>
         )}
     </nav>
   )
