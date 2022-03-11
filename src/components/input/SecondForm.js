@@ -80,7 +80,7 @@ const SecondForm = ({ btnSize, btnText, classes, inputSize, path} ) => {
         <div className={`col-${inputSize ? inputSize : '8'} mb-4 mb-md-5 row align-items-center justify-content-between`}>
             <label htmlFor='address' className='form-label justify-self-left col-2'>Address:</label>
             <div className='col-9'>
-                <input id='address' className='form-control' type='tel' name='address' placeholder='Your address' onChange={addressChangeHandler}/>
+                <input id='address' className='form-control' type='text' name='address' placeholder='Your address' onChange={addressChangeHandler}/>
             </div>
         </div>
         <div className={`col-${btnSize}`}>
