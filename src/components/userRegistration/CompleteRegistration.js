@@ -27,6 +27,7 @@ const style = {
 const CompleteRegistration = () => {
 
     const [otp, setOtp] = useState('')
+     const [loading, setLoading ] = useState(false)
 
     const [initState, setInitState] = useState({
         loading: true,
@@ -44,7 +45,7 @@ const CompleteRegistration = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-
+        setLoading(true)
         let currState = store.getState();
 
         let token = localStorage.getItem('registerToken')
@@ -56,6 +57,7 @@ const CompleteRegistration = () => {
         setInitState(currState)
 
         if(currState.error) {
+            setLoading(false)
             return alert.error(currState.error)
           }
     }
@@ -84,7 +86,7 @@ const CompleteRegistration = () => {
                 </div>
                 <div className='col-6 mx-auto'>
 
-                    <Button btnText='Verify' />
+                    <Button loading={loading} btnText='Verify' />
                 </div>
             </form>
 

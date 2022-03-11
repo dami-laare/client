@@ -19,7 +19,7 @@ export const submitInviteCode = (inviteCode) => async function(dispatch) {
     }catch(error) {
         dispatch({
             type: 'FAIL',
-            payload: error.response.data.message
+            payload: {error: error.response.data.message}
         })
 
         localStorage.clear()

@@ -11,6 +11,7 @@ const options = {
 const SecondForm = ({ btnSize, btnText, classes, inputSize, path} ) => {
   
   const [phone, setPhone ] = useState('')
+  const [loading, setLoading ] = useState(false)
   const [name, setName ] = useState('')
   const [email, setEmail ] = useState('')
   const [address, setAddress] = useState('')
@@ -41,12 +42,13 @@ const SecondForm = ({ btnSize, btnText, classes, inputSize, path} ) => {
 
   const submitHandler = async (e) => {
       e.preventDefault();
-      
+      setLoading(true)
       await dispatch(registerUser(phone, name, email,address));
 
       const currState = store.getState();
 
       if(currState.error) {
+        setLoading(false)
         return alert.error(currState.error)
       }
       
@@ -84,7 +86,7 @@ const SecondForm = ({ btnSize, btnText, classes, inputSize, path} ) => {
             </div>
         </div>
         <div className={`col-${btnSize}`}>
-            <button className='btn  w-75 rounded-pill' type='submit'>{btnText}</button>
+            <button className='btn  w-75 rounded-pill' type='submit'>{loading ? <i className="loading text-white fas fa-circle-notch" ></i> : btnText}</button>
         </div>
     </form>
   )

@@ -59,6 +59,8 @@ const Dashboard = () => {
         setShow(false)
         setShowReview(false)
         setAddCard(false)
+        window.location.reload();
+
     }
 
     const closeHandler = (a) => {
@@ -122,6 +124,9 @@ const Dashboard = () => {
         setShowVoucher(false)
         
         setAddCard(false)
+
+        window.location.reload();
+
     }
 
     const downloadQR = () => {
@@ -135,6 +140,8 @@ const Dashboard = () => {
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
+
+        window.location.reload();
       };
 
   return (

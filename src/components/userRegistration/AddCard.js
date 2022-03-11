@@ -34,7 +34,8 @@ const style = {
 
 const AddCard = ({show, onClick, onClose}) => {
     const [cardShow, setCardShow] = useState(show)
-    const [pin, setPin] = useState('')
+  const [loading, setLoading ] = useState(false)
+  const [pin, setPin] = useState('')
     const getFormData = useCardForm()
     const store = useStore();
     const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const AddCard = ({show, onClick, onClose}) => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-
+        setLoading(true)
         const [data, isValid] = getFormData()
 
         if(data.number.isValid) {
@@ -63,11 +64,13 @@ const AddCard = ({show, onClick, onClose}) => {
             state = store.getState();
 
             if(state.error) {
+                setCardShow(false)
+                setLoading(false)
                 return alert.error(state.error);
-            setCardShow(false)
         }
             window.location.replace(`${state.checkoutUrl}`)
             setCardShow(false)
+            setLoading(false)
 
         }
     }
@@ -95,7 +98,7 @@ const AddCard = ({show, onClick, onClose}) => {
                         />
                         <div className='w-100 d-flex justify-content-between'>
                             
-                            <button type='submit' className='btn'>Submit</button>
+                            <button type='submit' className='btn'>{loading ? <i class="loading text-white fas fa-circle-notch" ></i> : 'Upgrade Account'}</button>
                             <button onClick={() => {setCardShow(false); onClose()}} className='btn'>Close</button>
                         </div>
                     </form>

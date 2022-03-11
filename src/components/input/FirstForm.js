@@ -8,6 +8,7 @@ import { submitInviteCode } from '../../actions/userActions';
 const FirstForm = ({ placeholder, btnSize, type, btnText, id, name, classes, inputSize, path} ) => {
   
   const [code, setCode ] = useState('')
+  const [loading, setLoading ] = useState(false)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const alert = useAlert();
@@ -19,7 +20,7 @@ const FirstForm = ({ placeholder, btnSize, type, btnText, id, name, classes, inp
 
   const submitHandler = async (e) => {
       e.preventDefault();
-      
+      setLoading(true)
       await dispatch(submitInviteCode(code))
 
       const currState = store.getState();
@@ -28,9 +29,9 @@ const FirstForm = ({ placeholder, btnSize, type, btnText, id, name, classes, inp
 
 
       if(currState.error) {
+        setLoading(false)
         return alert.error(currState.error)
-      }
-      await localStorage.setItem('inviteAllowed', 'true')
+    }
 
       navigate(`${path}`);
       
@@ -44,7 +45,7 @@ const FirstForm = ({ placeholder, btnSize, type, btnText, id, name, classes, inp
             <input id={id} className='form-control' type={type} name={name} placeholder={placeholder} onChange={codeChangeHandler}/>
         </div>
         <div className={`col-${btnSize}`}>
-            <button className='btn w-75 rounded-pill' type='submit'>{btnText}</button>
+            <button className='btn w-75 rounded-pill' type='submit'>{loading ? <i class="loading text-white fas fa-circle-notch" ></i> : btnText}</button>
         </div>
     </form>
   )

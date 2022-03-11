@@ -249,3 +249,20 @@
 .card-front-face {
   margin-top: 3em;
 }
+
+@keyframes spinner {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(359deg);}
+}
+
+.loading {
+  font-size: 1rem;
+  color: #fff;
+  animation-name: spinner;
+  animation-duration: 0.6s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+

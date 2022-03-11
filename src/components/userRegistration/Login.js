@@ -8,6 +8,7 @@ import { login } from '../../actions/userActions';
 const Login = () => {
 
   const [pin, setPin ] = useState('')
+  const [loading, setLoading ] = useState(false)
   const [phone, setPhone ] = useState('')
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,14 +25,16 @@ const Login = () => {
 
   const submitHandler = async (e) => {
       e.preventDefault();
-      
+      setLoading(true)
       await dispatch(login(phone, pin))
 
       const currState = store.getState();
 
       if(currState.error) {
+        setLoading(false)
         return alert.error(currState.error)
       }
+      setLoading(false)
       
       await localStorage.setItem('completeToken', currState.token)
       await localStorage.setItem('details', JSON.stringify(currState.details));
@@ -68,7 +71,7 @@ const Login = () => {
                 </div>
             </div>
             <div className={`col-6 text-center`}>
-                <button className='btn  w-75 rounded-pill' type='submit'>Login</button>
+                <button className='btn  w-75 rounded-pill' type='submit'>{loading ? <i className="loading text-white fas fa-circle-notch" ></i> : 'Login'}</button>
             </div>
         </form>
     </Fragment>

@@ -12,7 +12,8 @@ import { addPin } from '../../actions/userActions';
 
 const CreatePin = ({style, show1}) => {
 
-    const [pin, setPin] = useState('');
+     const [loading, setLoading ] = useState(false)
+     const [pin, setPin] = useState('');
     const [show, setShow] = useState(show1)
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -33,16 +34,20 @@ const CreatePin = ({style, show1}) => {
     const submitHandler = async (e) => {
         e.preventDefault();
         let state = store.getState();
-
+        setLoading(true)
         await dispatch(addPin(pin, state.token))
 
         state = store.getState();
 
         if(state.error) {
+            setLoading(false)
+
             return alert.error(state.error)
           }
 
         setShow(true)
+
+        setLoading(false)
         await localStorage.setItem('details', JSON.stringify(state.details));
 
 
@@ -65,7 +70,7 @@ const CreatePin = ({style, show1}) => {
                 </div>
                 <div className='col-6 mx-auto'>
 
-                    <Button btnText='Verify' />
+                    <Button loading={loading} btnText='Verify' />
                 </div>
             </form>
         </section>

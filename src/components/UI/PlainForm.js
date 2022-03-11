@@ -7,7 +7,8 @@ import { verifyBVN } from '../../actions/userActions';
 
 const PlainForm = ({ type, name, placeholder, btnSize, btnText, classes, onClick, close }) => {
     const [bvn, setBvn] = useState('')
-    const [dob, setDob] = useState(null)
+  const [loading, setLoading ] = useState(false)
+  const [dob, setDob] = useState(null)
     const store = useStore();
     const navigate = useNavigate();
     const alert = useAlert();
@@ -25,21 +26,30 @@ const PlainForm = ({ type, name, placeholder, btnSize, btnText, classes, onClick
 
     const submitHandler = async (e) => {
         e.preventDefault()
-
+        setLoading(true)
         let currState = store.getState();
 
         await dispatch(verifyBVN(bvn, dob, localStorage.getItem('completeToken')))
 
         currState = store.getState();
         if(currState.error) {
+            setLoading(false)
+            
             close(true)
             onClick()
             return alert.error(currState.error)
         }
+
+        alert.info('BNV Successfully added')
         let dashData = JSON.parse(localStorage.getItem('dashData'));
         dashData.bvnAdded = true
         localStorage.setItem('dashData', JSON.stringify(dashData))
+        setLoading(false)
         close(true)
+
+        setTimeout(() => {
+            window.location.reload()
+        }, 3000)
     }
   return (
     <form className={`row mx-auto ${classes ? classes : ''}`} onSubmit={submitHandler}>
@@ -71,7 +81,7 @@ const PlainForm = ({ type, name, placeholder, btnSize, btnText, classes, onClick
             </div>
         </div>
         <div className={`col-${btnSize} text-center mb-2`}>
-            <button className='btn w-100 rounded-pill mx-auto' type='submit'>{btnText}</button>
+            <button className='btn w-100 rounded-pill mx-auto' type='submit'>{loading ? <i class="loading text-white fas fa-circle-notch" ></i>  :btnText}</button>
         </div>
         <div className='col-12 row text-center justify-content-center mt-2'>
             <div className='col-6'>
