@@ -42,7 +42,7 @@ const FirstForm = ({ placeholder, btnSize, type, btnText, id, name, classes, inp
   return (
     <form onSubmit={submitHandler} className={`row mx-auto ${classes ? classes : ''}`}>
         <div className={`col-${inputSize ? inputSize : '8'} mb-3`}>
-            <input id={id} className='form-control' type={type} name={name} placeholder={placeholder} onChange={codeChangeHandler}/>
+            <input id={id} className='form-control' type={type} name={name} placeholder={placeholder} onChange={codeChangeHandler} required/>
         </div>
         <div className={`col-${btnSize}`}>
             <button className='btn w-75 rounded-pill' type='submit'>{loading ? <i class="loading text-white fas fa-circle-notch" ></i> : btnText}</button>

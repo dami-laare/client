@@ -64,25 +64,25 @@ const SecondForm = ({ btnSize, btnText, classes, inputSize, path} ) => {
         <div className={`col-${inputSize ? inputSize : '8'} mb-3 row align-items-center justify-content-between`}>
             <label htmlFor='name' className='form-label justify-self-left col-2'>Name:</label>
             <div className='col-9'>
-                <input id='name' className='form-control' name='name' placeholder='John Doe' onChange={nameChangeHandler}/>
+                <input id='name' className='form-control' name='name' placeholder='John Doe' onChange={nameChangeHandler} required/>
             </div>
         </div>
         <div className={`col-${inputSize ? inputSize : '8'} mb-3 row row align-items-center justify-content-between`}>
             <label htmlFor='email' className='form-label justify-self-left col-2'>Email:</label>
             <div className='col-9'>
-                <input id='email' className='form-control' type='email' name='email' placeholder='someone@example.com' onChange={emailChangeHandler}/>
+                <input id='email' className='form-control' type='email' name='email' placeholder='someone@example.com' onChange={emailChangeHandler} required/>
             </div>
         </div>
         <div className={`col-${inputSize ? inputSize : '8'} mb-4 mb-md-5 row align-items-center justify-content-between`}>
             <label htmlFor='phone' className='form-label justify-self-left col-2'>Phone:</label>
             <div className='col-9'>
-                <input id='phone' className='form-control' type='tel' name='phone' placeholder='080********' onChange={codeChangeHandler}/>
+                <input id='phone' className='form-control' type='tel' name='phone' placeholder='080********' onChange={codeChangeHandler} required/>
             </div>
         </div>
         <div className={`col-${inputSize ? inputSize : '8'} mb-4 mb-md-5 row align-items-center justify-content-between`}>
             <label htmlFor='address' className='form-label justify-self-left col-2'>Address:</label>
             <div className='col-9'>
-                <input id='address' className='form-control' type='text' name='address' placeholder='Your address' onChange={addressChangeHandler}/>
+                <input id='address' className='form-control' type='text' name='address' placeholder='Your address' onChange={addressChangeHandler} required/>
             </div>
         </div>
         <div className={`col-${btnSize}`}>
