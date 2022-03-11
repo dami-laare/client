@@ -66,7 +66,7 @@ const Settings = () => {
                     </div>
                 </div>
                 <div className={`col-10 text-center`}>
-                    <button className='btn  w-75 rounded-pill' type='submit'>Update profile</button>
+                    <button className='btn  w-75 rounded-pill' type='submit'>Update pin</button>
                 </div>
             </form>
         </div>

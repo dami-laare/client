@@ -7,7 +7,7 @@ export const getMealTicket = (token, value) => async (dispatch) => {
             type:"GETTING_MEAL_TICKET"
         })
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/ticket`, {token, value});
+        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/ticket`, {token, value});
 
         console.log(data)
 
@@ -27,7 +27,7 @@ export const getUserTickets = (token) => async (dispatch) => {
             type:"LOADING"
         })
 
-        const {data} = await axios.post(`http://localhost:4000/api/v1/user/tickets`, {token});
+        const {data} = await axios.post(`https://test-getfungry.herokuapp.com/api/v1/user/tickets`, {token});
 
 
         dispatch({

@@ -10,7 +10,7 @@ const ScanQr = () => {
     const store = useStore();
     const dispatch = useDispatch();
     const alert = useAlert();
-    const [id, setId] = useState('jyhhnergnethnetn');
+    const [id, setId] = useState('');
     const [value, setValue] = useState('')
     
     const verify = async () => {
